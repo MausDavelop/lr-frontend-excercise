@@ -16,7 +16,7 @@ export class ApiService {
       ...config,
       params: {
         ...(config?.params ?? {}),
-        data
+        ...data
       }
     };
 
@@ -28,7 +28,7 @@ export class ApiService {
       ...config,
       params: {
         ...(config?.params ?? {}),
-        data
+        ...data
       }
     };
 
