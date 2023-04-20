@@ -22,7 +22,7 @@ import { useState } from 'react';
 const Token = () => {
   const { query } = useRouter();
   const [isImageLoaded, setImageLoaded] = useState(false);
-  const backgroundColor = useColorModeValue('white', 'black');
+  const backgroundColor = useColorModeValue('white', 'gray.900');
 
   const { data: token, ...status } = useToken(nonArray(query.address), nonArray(query.tokenId));
 
