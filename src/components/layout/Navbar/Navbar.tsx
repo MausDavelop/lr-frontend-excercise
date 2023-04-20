@@ -34,7 +34,7 @@ const Navbar = () => {
 
   return (
     <Box
-      bg={useColorModeValue('whiteAlpha.600', 'blackAlpha.900')}
+      bg={useColorModeValue('whiteAlpha.600', 'rgba(26, 32, 44, 0.5)')}
       color={useColorModeValue('black', 'white')}
       fontWeight="medium"
       fontSize="2xl"
