@@ -1,5 +1,5 @@
 export interface BannerProps {
-  src: string;
+  src?: string;
   title?: string;
   href?: string;
 }

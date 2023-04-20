@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { CollectionLogoProps } from './CollectionLogo.props';
-import { Box, useColorModeValue } from '@chakra-ui/react';
+import { Box, Skeleton, useColorModeValue } from '@chakra-ui/react';
+import { useState } from 'react';
 
 const CollectionLogo = ({
   src,
@@ -8,6 +9,7 @@ const CollectionLogo = ({
   priority = false,
   ...props
 }: CollectionLogoProps) => {
+  const [isLoaded, setLoaded] = useState(false);
   const borderColor = useColorModeValue('white', 'gray.800');
 
   return (
@@ -22,7 +24,18 @@ const CollectionLogo = ({
       borderColor={borderColor}
       boxShadow="lg"
       {...props}>
-      <Image src={src} alt="" fill priority={priority} style={{ objectFit: 'cover' }} />
+      <Skeleton isLoaded={isLoaded} position="relative" width="100%" height="100%">
+        {!!src && (
+          <Image
+            src={src}
+            alt=""
+            fill
+            priority={priority}
+            style={{ objectFit: 'cover' }}
+            onLoadingComplete={() => setLoaded(true)}
+          />
+        )}
+      </Skeleton>
     </Box>
   );
 };

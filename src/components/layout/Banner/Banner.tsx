@@ -1,19 +1,11 @@
-import { Box, Heading, useColorModeValue } from '@chakra-ui/react';
+import { Box, Heading, Skeleton, SkeletonText, useColorModeValue } from '@chakra-ui/react';
 import { BannerProps } from './Banner.props';
 import Image from 'next/image';
-import { navbarHeight } from '@Src/theme/themeContants';
-import Link from 'next/link';
-import { ReactNode } from 'react';
-
-const TitleWrapper = ({ href, children }: { href?: string; children?: ReactNode }) => {
-  if (href) {
-    return <Link href={href}>{children}</Link>;
-  }
-
-  return <>{children}</>;
-};
+import Link from '@Src/components/ui/Link/Link';
+import { useState } from 'react';
 
 const Banner = ({ src, title, href }: BannerProps) => {
+  const [isLoaded, setLoaded] = useState(false);
   const overlayColor = useColorModeValue('whiteAlpha.600', 'blackAlpha.800');
   const titleColor = useColorModeValue('gray.800', 'gray.300');
 
@@ -21,10 +13,21 @@ const Banner = ({ src, title, href }: BannerProps) => {
     <Box height={{ base: 250, md: 400 }} overflow="hidden" position="relative">
       <Box position="absolute" inset="0" backgroundColor={overlayColor} zIndex={-1} />
 
-      <Image src={src} alt="" fill priority style={{ objectFit: 'cover', zIndex: -2 }} />
+      <Skeleton isLoaded={isLoaded} width="100%" height="100%" position="relative" zIndex={-2}>
+        {!!src && (
+          <Image
+            src={src}
+            alt=""
+            fill
+            priority
+            style={{ objectFit: 'cover', zIndex: -2 }}
+            onLoadingComplete={() => setLoaded(true)}
+          />
+        )}
+      </Skeleton>
 
       {!!title && (
-        <TitleWrapper href={href}>
+        <Link href={href}>
           <Heading
             fontSize={{ base: '4xl', md: '6xl' }}
             color={titleColor}
@@ -40,7 +43,7 @@ const Banner = ({ src, title, href }: BannerProps) => {
             }}>
             {title}
           </Heading>
-        </TitleWrapper>
+        </Link>
       )}
     </Box>
   );

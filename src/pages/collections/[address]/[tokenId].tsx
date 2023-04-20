@@ -1,88 +1,90 @@
+import DataStatus from '@Src/components/containers/DataStatus/DataStatus';
 import Banner from '@Src/components/layout/Banner/Banner';
 import Page from '@Src/components/layout/Page/Page';
 import { useToken } from '@Src/hooks/api/collectionHooks';
 import { nonArray } from '@Src/utils/typeUtils';
 import {
+  Box,
   Container,
   Flex,
   HStack,
   Heading,
   Image,
+  Skeleton,
+  SkeletonText,
   Stack,
   Text,
   useColorModeValue
 } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
+import { useState } from 'react';
 
 const Token = () => {
   const { query } = useRouter();
+  const [isImageLoaded, setImageLoaded] = useState(false);
   const backgroundColor = useColorModeValue('white', 'black');
 
-  const {
-    data: token,
-    isLoading,
-    isError
-  } = useToken(nonArray(query.address), nonArray(query.tokenId));
+  const { data: token, ...status } = useToken(nonArray(query.address), nonArray(query.tokenId));
 
-  if (isError) {
-    return (
-      <>
-        <h1>Error!</h1>
-        <p>Oops, something went wrong, we&apos;re working on it!</p>
-      </>
-    );
-  }
+  const imageHeight = { base: '150px', md: '250px', lg: '400px' };
+  const imageRadius = { base: '16', md: '24px' };
 
-  if (isLoading) {
-    return <p>Loading...</p>;
-  }
+  return (
+    <>
+      <Banner
+        href={`/collections/${query.address}`}
+        src={token?.collection.bannerURI ?? ''}
+        title={token?.collection.name}
+      />
 
-  if (token) {
-    return (
-      <>
-        <Banner
-          href={`/collections/${query.address}`}
-          src={token.collection.bannerURI}
-          title={token.collection.name}
-        />
-
-        <Container
-          maxW="container.xl"
-          padding="8"
-          width="calc(100% - 32px)"
-          marginTop={{ base: '-32px', md: '-100px' }}
-          borderRadius="32px"
-          background={backgroundColor}
-          minH="100%"
-          boxShadow="lg">
+      <Container
+        maxW="container.xl"
+        padding="8"
+        width="calc(100% - 32px)"
+        marginTop={{ base: '-32px', md: '-100px' }}
+        borderRadius="32px"
+        background={backgroundColor}
+        minH="100%"
+        boxShadow="lg">
+        <DataStatus hasData={!!token} {...status}>
           <Flex flexDirection={{ base: 'column', md: 'row' }} alignItems="start">
-            <Image
-              src={token.imageURI}
-              alt=""
-              maxH={{ base: '150px', md: '250px', lg: '400px' }}
-              marginRight="32px"
-              borderRadius={{ base: '16', md: '24px' }}
-            />
+            <Box marginRight="32px">
+              <Skeleton
+                isLoaded={isImageLoaded}
+                height={imageHeight}
+                width={imageHeight}
+                borderRadius={imageRadius}>
+                <Image
+                  src={token?.imageURI}
+                  alt=""
+                  maxH={imageHeight}
+                  borderRadius={imageRadius}
+                  onLoad={() => setImageLoaded(true)}
+                />
+              </Skeleton>
+            </Box>
 
-            <Stack paddingTop="16px">
-              <Text>{`#${token.tokenId}`}</Text>
+            <Stack paddingTop="16px" width="100%">
+              <SkeletonText noOfLines={1} width={100} skeletonHeight="4" isLoaded={!!token}>
+                <Text>{`#${token?.tokenId}`}</Text>
+              </SkeletonText>
 
-              <Heading overflowWrap="anywhere" mt="0 !important">
-                {token.name}
-              </Heading>
+              <SkeletonText noOfLines={1} maxW={500} skeletonHeight="12" isLoaded={!!token}>
+                <Heading overflowWrap="anywhere">{token?.name}</Heading>
+              </SkeletonText>
 
-              <Text>{token.description ?? 'No description available'}</Text>
+              <SkeletonText skeletonHeight="2" maxW={400} isLoaded={!!token}>
+                <Text>{token?.description ?? 'No description available'}</Text>
+              </SkeletonText>
             </Stack>
           </Flex>
-        </Container>
-      </>
-    );
-  }
-
-  return <p>We couldn&apos;t find that token</p>;
+        </DataStatus>
+      </Container>
+    </>
+  );
 };
 
-export default function collectionPage() {
+export default function TokenPage() {
   return (
     <Page>
       <Token />
