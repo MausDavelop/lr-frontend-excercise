@@ -5,11 +5,8 @@ import Card from '@Src/components/ui/Card/Card';
 import SkeletonCards from '@Src/components/ui/SkeletonCards/SkeletonCards';
 import { useCollections } from '@Src/hooks/api/collectionHooks';
 import { Box, Container, Grid } from '@chakra-ui/react';
-import { useRouter } from 'next/router';
 
 const Collections = () => {
-  const { query } = useRouter();
-
   const { data: collections, ...status } = useCollections();
 
   return (

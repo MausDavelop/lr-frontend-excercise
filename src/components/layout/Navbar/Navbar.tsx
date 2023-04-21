@@ -19,6 +19,7 @@ import NavLink from './internal/components/NavLink/NavLink';
 import { useAtom } from 'jotai';
 import { accountsAtom, selectedAccountAtom, useWallet } from '@Src/hooks/wallet/useWallet';
 import { useAvatar } from '@Src/hooks/wallet/useAvatar';
+import Link from '@Src/components/ui/Link/Link';
 
 const Links = [
   {
@@ -57,7 +58,9 @@ const Navbar = () => {
             onClick={isOpen ? onClose : onOpen}
           />
           <HStack spacing={8} alignItems={'center'}>
-            <Logo fill={useColorModeValue('black', 'white')} width={150} />
+            <Link href="/">
+              <Logo fill={useColorModeValue('black', 'white')} width={150} />
+            </Link>
 
             <HStack as={'nav'} spacing={4} display={{ base: 'none', md: 'flex' }}>
               {Links.map((link) => (
