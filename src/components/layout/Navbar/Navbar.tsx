@@ -75,8 +75,8 @@ const Navbar = () => {
                   <Avatar size={'sm'} src={avatar ?? undefined} />
                 </HStack>
               ) : (
-                <NavLink onClick={connect}>
-                  <Box>Connect</Box>
+                <NavLink href="#" onClick={connect}>
+                  Connect
                 </NavLink>
               )}
             </Menu>

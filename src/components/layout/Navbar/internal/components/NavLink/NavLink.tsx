@@ -1,10 +1,10 @@
-import { Link, useColorModeValue } from '@chakra-ui/react';
+import { Box, useColorModeValue } from '@chakra-ui/react';
 import { NavLinkProps } from './NavLink.props';
+import Link from '@Src/components/ui/Link/Link';
 
 const NavLink = ({ href, onClick, children }: NavLinkProps) => {
   return (
-    <Link
-      onClick={onClick}
+    <Box
       px={2}
       py={1}
       rounded={'md'}
@@ -13,9 +13,11 @@ const NavLink = ({ href, onClick, children }: NavLinkProps) => {
         textDecoration: 'none',
         bg: useColorModeValue('gray.200', 'gray.700')
       }}
-      href={href}>
-      {children}
-    </Link>
+      cursor="pointer">
+      <Link onClick={onClick} href={href}>
+        {children}
+      </Link>
+    </Box>
   );
 };
 

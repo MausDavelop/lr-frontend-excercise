@@ -1,10 +1,10 @@
 import { LinkProps } from './Link.props';
 import BaseLink from 'next/link';
 
-const Link = ({ href, children, ...props }: LinkProps) => {
+const Link = ({ href, children, onClick, ...props }: LinkProps) => {
   if (href) {
     return (
-      <BaseLink href={href} {...props}>
+      <BaseLink href={href} onClick={onClick} {...props}>
         {children}
       </BaseLink>
     );

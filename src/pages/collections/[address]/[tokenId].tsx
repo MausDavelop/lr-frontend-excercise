@@ -43,6 +43,8 @@ const Token = () => {
       />
 
       <Container
+        position="relative"
+        zIndex={1}
         maxW="container.xl"
         padding="8"
         width="calc(100% - 32px)"

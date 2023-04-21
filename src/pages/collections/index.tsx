@@ -14,7 +14,7 @@ const Collections = () => {
 
   return (
     <>
-      <Banner title="Collections" />
+      <Banner title="Collections" src={false} />
 
       <Container maxW="container.xl">
         <Box margin="16px 0">
