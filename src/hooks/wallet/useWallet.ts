@@ -5,6 +5,7 @@ import { exists } from '@Src/utils/typeUtils';
 
 export const providerAtom = atom<BrowserProvider | null>(null);
 export const accountsAtom = atom<JsonRpcSigner[] | undefined>(undefined);
+export const selectedAccountAtom = atom<number>(0);
 
 export const useWallet = () => {
   const [provider, setProvider] = useAtom(providerAtom);

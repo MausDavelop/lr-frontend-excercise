@@ -14,7 +14,7 @@ class LooksRareService extends ApiService {
     super('https://api.looksrare.org/api/v1');
   }
 
-  private addKnownTokens = async (address: string) => {
+  private _addKnownTokens = async (address: string) => {
     const knownCollectionTokens = knownTokens.filter(({ collection }) => collection === address);
 
     const tokens = await Promise.all(
@@ -31,7 +31,7 @@ class LooksRareService extends ApiService {
 
     return {
       ...data.data,
-      tokens: await this.addKnownTokens(address)
+      tokens: await this._addKnownTokens(address)
     };
   };
 
@@ -40,6 +40,12 @@ class LooksRareService extends ApiService {
       collection: collectionAddress,
       tokenId: id
     });
+
+    return data.data;
+  };
+
+  public getOrders = async () => {
+    const { data } = await this.get<ApiResponse<unknown>>('/orders');
 
     return data.data;
   };

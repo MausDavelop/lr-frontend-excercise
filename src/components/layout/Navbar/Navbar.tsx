@@ -10,13 +10,14 @@ import {
   useDisclosure,
   useColorModeValue,
   Stack,
+  Text,
   Container
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 import Logo from '../Logo/Logo';
 import NavLink from './internal/components/NavLink/NavLink';
 import { useAtom } from 'jotai';
-import { accountsAtom, useWallet } from '@Src/hooks/wallet/useWallet';
+import { accountsAtom, selectedAccountAtom, useWallet } from '@Src/hooks/wallet/useWallet';
 import { useAvatar } from '@Src/hooks/wallet/useAvatar';
 
 const Links = [
@@ -29,6 +30,7 @@ const Links = [
 const Navbar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [accounts] = useAtom(accountsAtom);
+  const [selectedAccount] = useAtom(selectedAccountAtom);
   const { connect } = useWallet();
   const { data: avatar } = useAvatar();
 
@@ -68,17 +70,14 @@ const Navbar = () => {
           <Flex alignItems={'center'}>
             <Menu>
               {accounts ? (
-                <Avatar size={'sm'} src={avatar ?? undefined} />
+                <HStack spacing={2} alignItems="center">
+                  <Text fontSize="xs">{accounts[selectedAccount].address}</Text>
+                  <Avatar size={'sm'} src={avatar ?? undefined} />
+                </HStack>
               ) : (
-                <MenuButton
-                  onClick={connect}
-                  as={Button}
-                  rounded={'full'}
-                  variant={'link'}
-                  cursor={'pointer'}
-                  minW={0}>
+                <NavLink onClick={connect}>
                   <Box>Connect</Box>
-                </MenuButton>
+                </NavLink>
               )}
             </Menu>
           </Flex>

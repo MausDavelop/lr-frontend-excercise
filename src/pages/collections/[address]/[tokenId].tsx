@@ -1,8 +1,10 @@
 import DataStatus from '@Src/components/containers/DataStatus/DataStatus';
 import Banner from '@Src/components/layout/Banner/Banner';
 import Page from '@Src/components/layout/Page/Page';
-import { useToken } from '@Src/hooks/api/collectionHooks';
+import { useToken } from '@Src/hooks/api/tokenHooks';
+import { useWalletNfts } from '@Src/hooks/api/walletHooks';
 import { nonArray } from '@Src/utils/typeUtils';
+import { CheckCircleIcon } from '@chakra-ui/icons';
 import {
   Box,
   Container,
@@ -17,7 +19,7 @@ import {
   useColorModeValue
 } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 
 const Token = () => {
   const { query } = useRouter();
@@ -25,9 +27,12 @@ const Token = () => {
   const backgroundColor = useColorModeValue('white', 'gray.900');
 
   const { data: token, ...status } = useToken(nonArray(query.address), nonArray(query.tokenId));
+  const { data: nfts } = useWalletNfts();
 
   const imageHeight = { base: '150px', md: '250px', lg: '400px' };
   const imageRadius = { base: '16', md: '24px' };
+
+  const isOwned = nfts?.some((nft) => token?.id === nft.token_id);
 
   return (
     <>
@@ -72,6 +77,13 @@ const Token = () => {
               <SkeletonText noOfLines={1} maxW={500} skeletonHeight="12" isLoaded={!!token}>
                 <Heading overflowWrap="anywhere">{token?.name}</Heading>
               </SkeletonText>
+
+              {isOwned && (
+                <HStack spacing={2}>
+                  <CheckCircleIcon fontSize="xl" color="green.400" />
+                  <Text fontWeight="bold">You own this NFT!</Text>
+                </HStack>
+              )}
 
               <SkeletonText skeletonHeight="2" maxW={400} isLoaded={!!token}>
                 <Text>{token?.description ?? 'No description available'}</Text>

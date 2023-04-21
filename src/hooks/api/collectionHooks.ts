@@ -1,3 +1,4 @@
+import { knownCollections } from '@Src/constants/knownData';
 import { looksRareService } from '@Src/services/looksrare/looksrareService';
 import { exists } from '@Src/utils/typeUtils';
 import { useQuery } from 'react-query';
@@ -18,18 +19,14 @@ export const useCollection = (address?: string) => {
   );
 };
 
-export const useToken = (collectionAddress?: string, id?: string) => {
-  return useQuery(
-    ['getToken', collectionAddress, id],
-    async () => {
-      if (exists(collectionAddress) && exists(id)) {
-        return looksRareService.getToken(collectionAddress, id);
-      }
+export const useCollections = () => {
+  return useQuery(['getCollections'], async () => {
+    const collections = await Promise.all(
+      knownCollections.map((address) => {
+        return looksRareService.getCollection(address);
+      })
+    );
 
-      return null;
-    },
-    {
-      enabled: exists(collectionAddress) && exists(id)
-    }
-  );
+    return collections;
+  });
 };

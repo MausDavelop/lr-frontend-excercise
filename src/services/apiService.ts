@@ -1,11 +1,12 @@
-import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
+import axios, { AxiosInstance, AxiosRequestConfig, CreateAxiosDefaults } from 'axios';
 
 export class ApiService {
   private _axiosInstance: AxiosInstance;
 
-  constructor(url: string) {
+  constructor(url: string, options?: CreateAxiosDefaults) {
     this._axiosInstance = axios.create({
-      baseURL: url
+      baseURL: url,
+      ...options
     });
   }
 
