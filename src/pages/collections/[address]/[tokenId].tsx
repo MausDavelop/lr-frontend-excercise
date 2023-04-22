@@ -27,15 +27,15 @@ const Token = () => {
   const backgroundColor = useColorModeValue('white', 'gray.900');
 
   const { data: token, ...status } = useToken(nonArray(query.address), nonArray(query.tokenId));
-  const { data: nfts } = useWalletNfts();
+  const { data: ownedNfts } = useWalletNfts();
 
   const imageHeight = { base: '150px', md: '250px', lg: '400px' };
   const imageRadius = { base: '16', md: '24px' };
 
-  const isOwned = nfts?.some((nft) => {
+  const isOwned = ownedNfts?.some((ownedNft) => {
     return (
-      token?.collectionAddress.toLowerCase() === nft.token_address &&
-      token?.tokenId === nft.token_id
+      token?.collectionAddress.toLowerCase() === ownedNft.token_address &&
+      token?.tokenId === ownedNft.token_id
     );
   });
 
