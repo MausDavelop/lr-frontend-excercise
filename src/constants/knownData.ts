@@ -3,7 +3,7 @@ export const knownCollections = [
   '0xED5AF388653567Af2F388E6224dC7C4b3241C544',
   '0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D',
   '0x306b1ea3ecdf94aB739F1910bbda052Ed4A9f949',
-  '0x23581767a106ae21c074b2276D25e5C3e136a68b'
+  '0xedeaeeafb386E293952Fc5F77c3424BC18753cdF'
 ];
 
 export const knownTokens = [
@@ -93,23 +93,23 @@ export const knownTokens = [
   },
   // collection 5
   {
-    collection: '0x23581767a106ae21c074b2276D25e5C3e136a68b',
-    id: '6613'
+    collection: '0xedeaeeafb386E293952Fc5F77c3424BC18753cdF',
+    id: '3990'
   },
   {
-    collection: '0x23581767a106ae21c074b2276D25e5C3e136a68b',
-    id: '4363'
+    collection: '0xedeaeeafb386E293952Fc5F77c3424BC18753cdF',
+    id: '2260'
   },
   {
-    collection: '0x23581767a106ae21c074b2276D25e5C3e136a68b',
-    id: '9041'
+    collection: '0xedeaeeafb386E293952Fc5F77c3424BC18753cdF',
+    id: '2410'
   },
   {
-    collection: '0x23581767a106ae21c074b2276D25e5C3e136a68b',
+    collection: '0xedeaeeafb386E293952Fc5F77c3424BC18753cdF',
     id: '638'
   },
   {
-    collection: '0x23581767a106ae21c074b2276D25e5C3e136a68b',
-    id: '3378'
+    collection: '0xedeaeeafb386E293952Fc5F77c3424BC18753cdF',
+    id: '1113'
   }
 ];
