@@ -16,7 +16,7 @@ const Collections = () => {
 
       <Container maxW="container.xl">
         <Box margin="16px 0">
-          <DataStatus hasData={!!collections} {...status}>
+          <DataStatus hasData={!!collections && collections.length > 0} {...status}>
             <Grid
               margin="0 -8px"
               gridTemplateColumns={{

@@ -1,4 +1,4 @@
-export const exists = <T>(input?: T): input is T => {
+export const exists = <T>(input?: T | null): input is T => {
   return input !== null && input !== undefined;
 };
 

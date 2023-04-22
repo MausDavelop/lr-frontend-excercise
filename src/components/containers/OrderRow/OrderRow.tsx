@@ -2,13 +2,17 @@ import { Avatar, Box, HStack, Stack, Tag, Text, useColorModeValue } from '@chakr
 import { OrderRowProps } from './OrderRow.props';
 import { useToken } from '@Src/hooks/api/tokenHooks';
 import { OrderStatus } from '@Src/models/order';
+import SkeletonOrderRow from './OrderRow.skeleton';
+import Link from 'next/link';
 
 const OrderRow = ({ collectionAddress, tokenId, signer, status, ...props }: OrderRowProps) => {
-  const { data: token } = useToken(collectionAddress, tokenId);
+  const { data: token, isLoading } = useToken(collectionAddress, tokenId);
 
   const getOrderStatusColor = (): [string, string] => {
     switch (status) {
       case OrderStatus.CANCELLED:
+        return ['red.400', 'red.800'];
+      case OrderStatus.EXECUTED:
         return ['green.400', 'green.800'];
       default:
         return ['black', 'black'];
@@ -19,8 +23,15 @@ const OrderRow = ({ collectionAddress, tokenId, signer, status, ...props }: Orde
     return status.toLowerCase().replace('_', ' ');
   };
 
+  const backgroundColor = useColorModeValue('white', 'gray.700');
+  const statusColor = useColorModeValue(...getOrderStatusColor());
+
+  if (isLoading) {
+    return <SkeletonOrderRow />;
+  }
+
   return (
-    <Box borderRadius="md" boxShadow="md" padding="4" {...props}>
+    <Box borderRadius="md" boxShadow="md" padding="4" backgroundColor={backgroundColor} {...props}>
       <Stack
         direction={{ base: 'column', md: 'row' }}
         alignItems={{ base: 'start', md: 'center' }}
@@ -31,22 +42,25 @@ const OrderRow = ({ collectionAddress, tokenId, signer, status, ...props }: Orde
           justifyContent="space-between"
           width={{ base: '100%', md: 'auto' }}>
           <Avatar src={token?.imageURI} />
-          <Tag
-            display={{ base: 'inline-flex', md: 'none' }}
-            color={useColorModeValue(...getOrderStatusColor())}>
+          <Tag display={{ base: 'inline-flex', md: 'none' }} color={statusColor}>
             {getOrderStatusLabel()}
           </Tag>
         </HStack>
 
         <HStack flex="1" spacing="4" justifyContent="space-between" maxWidth="100%">
           <Stack spacing="0.5" maxWidth="100%">
-            <Text fontWeight="bold">{token?.name}</Text>
+            <Link href={`/collections/${collectionAddress}/${tokenId}`}>
+              <Text fontWeight="bold" _hover={{ textDecoration: 'underline' }}>
+                {token?.name}
+              </Text>
+            </Link>
             <Text textOverflow="ellipsis">{`Signed by: ${signer}`}</Text>
           </Stack>
 
           <Tag
             display={{ base: 'none', md: 'inline-flex' }}
-            color={useColorModeValue(...getOrderStatusColor())}>
+            backgroundColor={statusColor}
+            color="gray.200">
             {getOrderStatusLabel()}
           </Tag>
         </HStack>

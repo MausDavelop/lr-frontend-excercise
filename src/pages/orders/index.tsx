@@ -4,17 +4,23 @@ import Banner from '@Src/components/layout/Banner/Banner';
 import Page from '@Src/components/layout/Page/Page';
 import SkeletonItems from '@Src/components/ui/SkeletonItems/SkeletonItems';
 import { useOrders } from '@Src/hooks/api/orderHooks';
-import { useIntersectionObserver } from '@Src/hooks/common/useIntersectionObserver';
 import { OrderType } from '@Src/models/order';
 import { Box, Container, HStack, Select, Stack, Text } from '@chakra-ui/react';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { useInView } from 'framer-motion';
 
 const Orders = () => {
   const fetchNextPageRef = useRef<HTMLParagraphElement | null>(null);
   const [orderType, setOrderType] = useState(OrderType.ASK);
   const { data, fetchNextPage, isLoading, isFetchingNextPage } = useOrders(orderType);
 
-  useIntersectionObserver(fetchNextPageRef.current, fetchNextPage);
+  const isInView = useInView(fetchNextPageRef);
+
+  useEffect(() => {
+    if (!isFetchingNextPage && isInView) {
+      fetchNextPage();
+    }
+  }, [fetchNextPage, isFetchingNextPage, isInView]);
 
   return (
     <>
@@ -28,6 +34,7 @@ const Orders = () => {
             alignItems={{ base: 'start', md: 'center' }}
             justifyContent="end">
             <Text whiteSpace="nowrap">Order type</Text>
+
             <Select
               value={orderType}
               display="inline-block"
@@ -53,7 +60,7 @@ const Orders = () => {
             });
           })}
 
-          {(isLoading || isFetchingNextPage || true) && (
+          {(isLoading || isFetchingNextPage) && (
             <SkeletonItems>
               <SkeletonOrderRow />
             </SkeletonItems>
