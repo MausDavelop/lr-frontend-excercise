@@ -7,7 +7,7 @@ const NavLink = ({ href, onClick, children, ...props }: NavLinkProps) => {
     <Box
       px={2}
       py={1}
-      rounded={'md'}
+      rounded="md"
       fontSize="md"
       _hover={{
         textDecoration: 'none',

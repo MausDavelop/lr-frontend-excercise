@@ -54,20 +54,20 @@ const Navbar = () => {
         right={0}
         backdropFilter="blur(10px)">
         <Container maxWidth="container.xl">
-          <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
+          <Flex h={16} alignItems="center" justifyContent="space-between">
             <IconButton
-              size={'md'}
+              size="md"
               icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
-              aria-label={'Open Menu'}
+              aria-label="Open menu"
               display={{ md: 'none' }}
               onClick={isOpen ? onClose : onOpen}
             />
-            <HStack spacing={8} alignItems={'center'}>
+            <HStack spacing={8} alignItems="center">
               <Link href="/">
                 <Logo fill={useColorModeValue('black', 'white')} width={150} />
               </Link>
 
-              <HStack as={'nav'} spacing={4} display={{ base: 'none', md: 'flex' }}>
+              <HStack as="nav" spacing={4} display={{ base: 'none', md: 'flex' }}>
                 {Links.map((link) => (
                   <NavLink href={link.path} key={link.label}>
                     {link.label}
@@ -75,7 +75,7 @@ const Navbar = () => {
                 ))}
               </HStack>
             </HStack>
-            <Flex alignItems={'center'}>
+            <Flex alignItems="center">
               <Menu>
                 {accounts ? (
                   <HStack spacing={2} alignItems="center">
@@ -85,7 +85,7 @@ const Navbar = () => {
                       display={{ base: 'none', md: 'inline' }}>
                       {accounts[selectedAccount]?.address}
                     </Text>
-                    <Avatar size={'sm'} src={avatar ?? undefined} />
+                    <Avatar size="sm" src={avatar ?? undefined} />
                   </HStack>
                 ) : (
                   <NavLink href="#" onClick={connect}>
@@ -102,7 +102,7 @@ const Navbar = () => {
 
           {isOpen ? (
             <Box pb={4} display={{ md: 'none' }}>
-              <Stack as={'nav'} spacing={4}>
+              <Stack as="nav" spacing={4}>
                 {Links.map((link) => (
                   <NavLink href={link.path} key={link.label}>
                     {link.label}
