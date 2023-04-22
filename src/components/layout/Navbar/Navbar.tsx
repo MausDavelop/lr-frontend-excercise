@@ -74,7 +74,7 @@ const Navbar = () => {
             <Menu>
               {accounts ? (
                 <HStack spacing={2} alignItems="center">
-                  <Text fontSize="xs">{accounts[selectedAccount].address}</Text>
+                  <Text fontSize="xs">{accounts[selectedAccount]?.address}</Text>
                   <Avatar size={'sm'} src={avatar ?? undefined} />
                 </HStack>
               ) : (

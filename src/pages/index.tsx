@@ -13,7 +13,8 @@ const Home = () => {
           <Text mt={2} maxW={500}>
             As you&apos;ve probably noticed, I didn&apos;t use the LR API for checking ownership.
             Now, this might just be me, but I couldn&apos;t find a way to get the owner&apos;s
-            address or any other way to verify ownership.
+            address or any other way to verify ownership in the docs, so I connected to Moralis for
+            that.
           </Text>
           <Text mt={2} maxW={500}>
             Futhermore, I couldn&apos;t fetch a list of collections or list the tokens within a
