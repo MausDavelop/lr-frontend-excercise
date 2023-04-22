@@ -27,6 +27,14 @@ const Collection = () => {
 
         <Box margin="16px 0">
           <DataStatus hasData={!!collection} {...status}>
+            {!!collection?.description && <Text mb="4">{collection?.description}</Text>}
+
+            {collection?.tokens.length === 0 && (
+              <Text fontWeight="bold">
+                We couldn&apos;t find any known tokens for this collection
+              </Text>
+            )}
+
             <Grid
               margin="0 -8px"
               gridTemplateColumns={{
@@ -34,21 +42,17 @@ const Collection = () => {
                 md: 'repeat(auto-fill, minmax(250px, 1fr))'
               }}>
               {collection ? (
-                collection.tokens.length > 0 ? (
-                  collection?.tokens.map((token) => {
-                    return (
-                      <Card
-                        key={token.id}
-                        href={`/collections/${query.address}/${token.tokenId}`}
-                        image={token.imageURI}
-                        title={`#${token.tokenId}`}
-                        description={token.description}
-                      />
-                    );
-                  })
-                ) : (
-                  <Text>We couldn&apos;t find any known tokens for this collection</Text>
-                )
+                collection?.tokens.map((token) => {
+                  return (
+                    <Card
+                      key={token.id}
+                      href={`/collections/${query.address}/${token.tokenId}`}
+                      image={token.imageURI}
+                      title={`#${token.tokenId}`}
+                      description={token.description}
+                    />
+                  );
+                })
               ) : (
                 <SkeletonItems>
                   <SkeletonCard />

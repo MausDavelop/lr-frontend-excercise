@@ -25,6 +25,7 @@ const OrderRow = ({ collectionAddress, tokenId, signer, status, ...props }: Orde
 
   const backgroundColor = useColorModeValue('white', 'gray.700');
   const statusColor = useColorModeValue(...getOrderStatusColor());
+  const tagColor = useColorModeValue('white', 'gray.200');
 
   if (isLoading) {
     return <SkeletonOrderRow />;
@@ -42,7 +43,10 @@ const OrderRow = ({ collectionAddress, tokenId, signer, status, ...props }: Orde
           justifyContent="space-between"
           width={{ base: '100%', md: 'auto' }}>
           <Avatar src={token?.imageURI} />
-          <Tag display={{ base: 'inline-flex', md: 'none' }} color={statusColor}>
+          <Tag
+            display={{ base: 'inline-flex', md: 'none' }}
+            backgroundColor={statusColor}
+            color={tagColor}>
             {getOrderStatusLabel()}
           </Tag>
         </HStack>
@@ -60,7 +64,7 @@ const OrderRow = ({ collectionAddress, tokenId, signer, status, ...props }: Orde
           <Tag
             display={{ base: 'none', md: 'inline-flex' }}
             backgroundColor={statusColor}
-            color="gray.200">
+            color={tagColor}>
             {getOrderStatusLabel()}
           </Tag>
         </HStack>
