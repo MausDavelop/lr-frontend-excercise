@@ -1,4 +1,4 @@
-import { Box, Heading, Skeleton, SkeletonText, useColorModeValue } from '@chakra-ui/react';
+import { Box, Heading, Skeleton, useColorModeValue } from '@chakra-ui/react';
 import { BannerProps } from './Banner.props';
 import Image from 'next/image';
 import Link from '@Src/components/ui/Link/Link';

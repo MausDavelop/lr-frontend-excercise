@@ -1,6 +1,5 @@
 import { looksRareService } from '@Src/services/looksrare/looksrareService';
-import { exists } from '@Src/utils/typeUtils';
-import { useInfiniteQuery, useQuery } from 'react-query';
+import { useInfiniteQuery } from 'react-query';
 
 export const useOrders = (orderType?: string) => {
   return useInfiniteQuery(

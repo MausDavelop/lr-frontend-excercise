@@ -19,7 +19,7 @@ import {
   useColorModeValue
 } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 
 const Token = () => {
   const { query } = useRouter();

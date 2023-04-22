@@ -1,4 +1,4 @@
-import { Box, Text } from '@chakra-ui/react';
+import { Text } from '@chakra-ui/react';
 import { DataStatusProps } from './DataStatus.props';
 
 const DataStatus = ({ hasData, isFetching, isFetched, isError, children }: DataStatusProps) => {

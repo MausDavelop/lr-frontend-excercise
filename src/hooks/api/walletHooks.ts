@@ -1,6 +1,6 @@
 import { useAtom } from 'jotai';
 import { useQuery } from 'react-query';
-import { accountsAtom, providerAtom, selectedAccountAtom } from '../wallet/useWallet';
+import { accountsAtom, selectedAccountAtom } from '../wallet/useWallet';
 import { moralisService } from '@Src/services/moralis/moralisService';
 import { exists } from '@Src/utils/typeUtils';
 

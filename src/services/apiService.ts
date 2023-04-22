@@ -10,8 +10,6 @@ export class ApiService {
     });
   }
 
-  //todo: maybe setup error interceptors
-
   protected get = async <T>(path: string, data?: {}, config?: AxiosRequestConfig) => {
     const args = {
       ...config,

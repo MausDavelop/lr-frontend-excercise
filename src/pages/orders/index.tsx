@@ -5,7 +5,7 @@ import Page from '@Src/components/layout/Page/Page';
 import SkeletonItems from '@Src/components/ui/SkeletonItems/SkeletonItems';
 import { useOrders } from '@Src/hooks/api/orderHooks';
 import { OrderType } from '@Src/models/order';
-import { Box, Container, HStack, Select, Stack, Text } from '@chakra-ui/react';
+import { Container, Select, Stack, Text } from '@chakra-ui/react';
 import { useEffect, useRef, useState } from 'react';
 import { useInView } from 'framer-motion';
 
