@@ -58,8 +58,8 @@ const OrderRow = ({ collectionAddress, tokenId, signer, status, ...props }: Orde
           </Tag>
         </HStack>
 
-        <HStack flex="1" spacing="4" justifyContent="space-between" maxWidthidth="100%">
-          <Stack spacing="0.5" maxWidthidth="100%">
+        <HStack flex="1" spacing="4" justifyContent="space-between" maxWidth="100%">
+          <Stack spacing="0.5" maxWidth="100%">
             <Link href={`/collections/${collectionAddress}/${tokenId}`}>
               <Text fontWeight="bold" _hover={{ textDecoration: 'underline' }}>
                 {token?.name}
