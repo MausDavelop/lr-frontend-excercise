@@ -1,3 +1,4 @@
 export interface OwnedNFT {
-  token_id: number;
+  token_address: string;
+  token_id: string;
 }

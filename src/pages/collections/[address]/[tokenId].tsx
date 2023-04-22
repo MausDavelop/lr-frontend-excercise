@@ -32,7 +32,12 @@ const Token = () => {
   const imageHeight = { base: '150px', md: '250px', lg: '400px' };
   const imageRadius = { base: '16', md: '24px' };
 
-  const isOwned = nfts?.some((nft) => token?.id === nft.token_id);
+  const isOwned = nfts?.some((nft) => {
+    return (
+      token?.collectionAddress.toLowerCase() === nft.token_address &&
+      token?.tokenId === nft.token_id
+    );
+  });
 
   return (
     <>

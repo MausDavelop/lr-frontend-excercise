@@ -16,7 +16,7 @@ class MoralisService extends ApiService {
   }
 
   public getWalletNfts = async (wallet: string) => {
-    const { data } = await this.get<ApiResponse<OwnedNFT[]>>(`/${wallet}/nft?format=decimal`);
+    const { data } = await this.get<ApiResponse<OwnedNFT[]>>(`/${wallet}/nft`);
 
     return data?.result;
   };
