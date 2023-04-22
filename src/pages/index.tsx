@@ -21,13 +21,19 @@ const Home = () => {
             collection. So I resorted to hardcoding some &quot;known&quot; collections and tokens
             within them.
           </Text>
+
+          <Heading size="lg">What can be improved?</Heading>
+          <Text mt={2} maxW={500}>
+            I really should be routing my calls to Moralis through the nextJS api, since my API key
+            is now exposed to anyone looking for it.
+          </Text>
         </Stack>
       </Container>
     </>
   );
 };
 
-export default function CollectionsPage() {
+export default function HomePage() {
   return (
     <Page>
       <Home />

@@ -3,7 +3,7 @@ import Banner from '@Src/components/layout/Banner/Banner';
 import Page from '@Src/components/layout/Page/Page';
 import Card from '@Src/components/ui/Card/Card';
 import CollectionLogo from '@Src/components/ui/CollectionLogo/CollectionLogo';
-import SkeletonCards from '@Src/components/ui/SkeletonCards/SkeletonCards';
+import SkeletonItems from '@Src/components/ui/SkeletonItems/SkeletonItems';
 import { useCollection } from '@Src/hooks/api/collectionHooks';
 import { nonArray } from '@Src/utils/typeUtils';
 import { Box, Container, Grid } from '@chakra-ui/react';
@@ -45,7 +45,7 @@ const Collection = () => {
                   );
                 })
               ) : (
-                <SkeletonCards />
+                <SkeletonItems />
               )}
             </Grid>
           </DataStatus>

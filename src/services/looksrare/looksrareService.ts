@@ -2,6 +2,7 @@ import Collection from '@Src/models/collection';
 import Token from '@Src/models/token';
 import { ApiService } from '../apiService';
 import { knownTokens } from '@Src/constants/knownData';
+import { Order, OrderResult, OrderType } from '@Src/models/order';
 
 interface ApiResponse<T> {
   data: T;
@@ -44,10 +45,25 @@ class LooksRareService extends ApiService {
     return data.data;
   };
 
-  public getOrders = async () => {
-    const { data } = await this.get<ApiResponse<unknown>>('/orders');
+  public getOrders = async (orderType?: string, first = 5, cursor?: string): Promise<Order[]> => {
+    const { data } = await this.get<ApiResponse<OrderResult[]>>('/orders', {
+      isOrderAsk: orderType === OrderType.ASK,
+      pagination: {
+        first,
+        cursor
+      }
+    });
 
-    return data.data;
+    return data.data.map((order) => {
+      const startTime = new Date(order.startTime.toString());
+      const endTime = new Date(order.endTime.toString());
+
+      return {
+        ...order,
+        startTime,
+        endTime
+      };
+    });
   };
 }
 

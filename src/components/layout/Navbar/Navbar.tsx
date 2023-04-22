@@ -25,6 +25,10 @@ const Links = [
   {
     label: 'Collections',
     path: '/collections'
+  },
+  {
+    label: 'Orders',
+    path: '/orders'
   }
 ];
 
