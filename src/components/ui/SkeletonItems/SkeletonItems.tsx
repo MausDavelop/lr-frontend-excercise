@@ -5,11 +5,7 @@ const SkeletonItems = ({ children, noOfCards = 5 }: SkeletonItemsProps) => {
   return (
     <>
       {new Array(noOfCards).fill(null).map((_, idx) => {
-        return (
-          <Box key={idx} margin="8px">
-            {children}
-          </Box>
-        );
+        return <Box key={idx}>{children}</Box>;
       })}
     </>
   );

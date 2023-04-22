@@ -22,7 +22,7 @@ const Collection = () => {
     <>
       <Banner src={collection?.bannerURI} title={collection?.name} />
 
-      <Container maxW="container.xl" marginTop={logoOffset}>
+      <Container maxWidth="container.xl" marginTop={logoOffset}>
         <CollectionLogo src={collection?.logoURI ?? ''} priority size={logoSize} />
 
         <Box margin="16px 0">
@@ -36,10 +36,10 @@ const Collection = () => {
             )}
 
             <Grid
-              margin="0 -8px"
+              gap="4"
               gridTemplateColumns={{
                 base: 'repeat(auto-fill, minmax(150px, 1fr))',
-                md: 'repeat(auto-fill, minmax(250px, 1fr))'
+                md: 'repeat(auto-fill, minmax(225px, 1fr))'
               }}>
               {collection ? (
                 collection?.tokens.map((token) => {

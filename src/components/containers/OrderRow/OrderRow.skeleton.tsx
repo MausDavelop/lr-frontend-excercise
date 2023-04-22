@@ -22,9 +22,9 @@ const SkeletonOrderRow = (props: BoxProps) => {
         <SkeletonCircle width="48px" height="48px" />
 
         <Stack flex="1" spacing="2" width="100%">
-          <SkeletonText maxW="300" skeletonHeight={{ base: '4', md: '6' }} noOfLines={1} />
+          <SkeletonText maxWidth="300" skeletonHeight={{ base: '4', md: '6' }} noOfLines={1} />
           <SkeletonText
-            maxW="500"
+            maxWidth="500"
             skeletonHeight={{ base: '2', md: '3' }}
             noOfLines={{ base: 2, md: 1 }}
           />

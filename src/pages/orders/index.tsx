@@ -26,7 +26,7 @@ const Orders = () => {
     <>
       <Banner title="LooksRare Orders" src={false} />
 
-      <Container maxW="container.xl">
+      <Container maxWidth="container.xl">
         <Stack padding="32px 0">
           <Stack
             mb={4}
@@ -38,7 +38,7 @@ const Orders = () => {
             <Select
               value={orderType}
               display="inline-block"
-              maxW={{ base: '100%', md: 'fit-content' }}
+              maxWidth={{ base: '100%', md: 'fit-content' }}
               onChange={(e) => setOrderType(e.target.value as OrderType)}>
               <option value={OrderType.ASK}>Ask</option>
               <option value={OrderType.BID}>Bid</option>

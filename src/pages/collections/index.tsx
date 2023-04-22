@@ -14,14 +14,14 @@ const Collections = () => {
     <>
       <Banner title="Collections" src={false} />
 
-      <Container maxW="container.xl">
+      <Container maxWidth="container.xl">
         <Box margin="16px 0">
           <DataStatus hasData={!!collections && collections.length > 0} {...status}>
             <Grid
-              margin="0 -8px"
+              gap="4"
               gridTemplateColumns={{
                 base: 'repeat(auto-fill, minmax(150px, 1fr))',
-                md: 'repeat(auto-fill, minmax(250px, 1fr))'
+                md: 'repeat(auto-fill, minmax(225px, 1fr))'
               }}>
               {collections ? (
                 collections.map((collection) => {

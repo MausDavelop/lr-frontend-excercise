@@ -30,7 +30,7 @@ const Token = () => {
   const { data: ownedNfts } = useWalletNfts();
 
   const imageHeight = { base: '150px', md: '250px', lg: '400px' };
-  const imageRadius = { base: '16', md: '24px' };
+  const imageRadius = { base: 'xl', md: '2xl' };
 
   const isOwned = ownedNfts?.some((ownedNft) => {
     return (
@@ -50,17 +50,17 @@ const Token = () => {
       <Container
         position="relative"
         zIndex={1}
-        maxW="container.xl"
+        maxWidth="container.xl"
         padding="8"
         width="calc(100% - 32px)"
-        marginTop={{ base: '-32px', md: '-100px' }}
-        borderRadius="32px"
+        marginTop={{ base: '-8', md: '-100px' }}
+        borderRadius="3xl"
         background={backgroundColor}
-        minH="100%"
+        minHeight="100%"
         boxShadow="lg">
         <DataStatus hasData={!!token} {...status}>
           <Flex flexDirection={{ base: 'column', md: 'row' }} alignItems="start">
-            <Box marginRight="32px">
+            <Box marginRight="8">
               <Skeleton
                 isLoaded={isImageLoaded}
                 height={imageHeight}
@@ -76,12 +76,12 @@ const Token = () => {
               </Skeleton>
             </Box>
 
-            <Stack paddingTop="16px" width="100%">
+            <Stack paddingTop="4" width="100%">
               <SkeletonText noOfLines={1} width={100} skeletonHeight="4" isLoaded={!!token}>
                 <Text>{`#${token?.tokenId}`}</Text>
               </SkeletonText>
 
-              <SkeletonText noOfLines={1} maxW={500} skeletonHeight="12" isLoaded={!!token}>
+              <SkeletonText noOfLines={1} maxWidth={500} skeletonHeight="12" isLoaded={!!token}>
                 <Heading overflowWrap="anywhere">{token?.name}</Heading>
               </SkeletonText>
 
@@ -92,7 +92,7 @@ const Token = () => {
                 </HStack>
               )}
 
-              <SkeletonText skeletonHeight="2" maxW={400} isLoaded={!!token}>
+              <SkeletonText skeletonHeight="2" maxWidth={400} isLoaded={!!token}>
                 <Text>{token?.description ?? 'No description available'}</Text>
               </SkeletonText>
             </Stack>

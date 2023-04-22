@@ -11,9 +11,16 @@ const OrderRow = ({ collectionAddress, tokenId, signer, status, ...props }: Orde
   const getOrderStatusColor = (): [string, string] => {
     switch (status) {
       case OrderStatus.CANCELLED:
+      case OrderStatus.INVALID_OWNER:
         return ['red.400', 'red.800'];
+      case OrderStatus.ERC20_APPROVAL:
+      case OrderStatus.ERC_APPROVAL:
+      case OrderStatus.ERC20_BALANCE:
+        return ['orange.400', 'orange.700'];
+      case OrderStatus.VALID:
       case OrderStatus.EXECUTED:
         return ['green.400', 'green.800'];
+      case OrderStatus.EXPIRED:
       default:
         return ['black', 'black'];
     }
@@ -51,8 +58,8 @@ const OrderRow = ({ collectionAddress, tokenId, signer, status, ...props }: Orde
           </Tag>
         </HStack>
 
-        <HStack flex="1" spacing="4" justifyContent="space-between" maxWidth="100%">
-          <Stack spacing="0.5" maxWidth="100%">
+        <HStack flex="1" spacing="4" justifyContent="space-between" maxWidthidth="100%">
+          <Stack spacing="0.5" maxWidthidth="100%">
             <Link href={`/collections/${collectionAddress}/${tokenId}`}>
               <Text fontWeight="bold" _hover={{ textDecoration: 'underline' }}>
                 {token?.name}

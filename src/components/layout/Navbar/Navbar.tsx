@@ -53,7 +53,7 @@ const Navbar = () => {
         left={0}
         right={0}
         backdropFilter="blur(10px)">
-        <Container maxW="container.xl">
+        <Container maxWidth="container.xl">
           <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
             <IconButton
               size={'md'}

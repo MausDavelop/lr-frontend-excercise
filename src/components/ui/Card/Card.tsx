@@ -6,8 +6,7 @@ const Card = ({ image, title, href, description }: CardProps) => {
   return (
     <Link href={href} style={{ display: 'flex' }}>
       <BaseCard
-        maxW="sm"
-        margin="8px"
+        maxWidth="sm"
         cursor="pointer"
         transition="all 200ms"
         _hover={{ transform: 'scale(1.025)', boxShadow: 'xl' }}>
@@ -20,12 +19,12 @@ const Card = ({ image, title, href, description }: CardProps) => {
             objectFit="cover"
           />
 
-          <Heading mt="2" mb={description ? 2 : 0} size="md" noOfLines={2}>
+          <Heading marginTop="2" mb={description ? 2 : 0} size="md" noOfLines={2}>
             {title}
           </Heading>
 
           {!!description && (
-            <Text mt="auto" noOfLines={2}>
+            <Text marginTop="auto" noOfLines={2}>
               {description}
             </Text>
           )}

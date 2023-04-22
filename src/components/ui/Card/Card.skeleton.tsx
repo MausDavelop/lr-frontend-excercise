@@ -3,7 +3,7 @@ import { Card, CardBody, CardProps, Skeleton, SkeletonText } from '@chakra-ui/re
 const SkeletonCard = (props: CardProps) => {
   return (
     <Card
-      maxW="sm"
+      maxWidth="sm"
       cursor="pointer"
       transition="all 200ms"
       _hover={{ transform: 'scale(1.025)', boxShadow: 'xl' }}
@@ -11,7 +11,7 @@ const SkeletonCard = (props: CardProps) => {
       <CardBody>
         <Skeleton width="100%" height={{ base: '150', md: '200' }} />
 
-        <SkeletonText mt="2" noOfLines={1} skeletonHeight="6" width={100} />
+        <SkeletonText marginTop="2" noOfLines={1} skeletonHeight="6" width={100} />
       </CardBody>
     </Card>
   );
