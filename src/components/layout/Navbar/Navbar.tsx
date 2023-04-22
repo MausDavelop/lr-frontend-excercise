@@ -93,7 +93,7 @@ const Navbar = () => {
                   </NavLink>
                 )}
 
-                <NavLink href="#" onClick={onModalOpen}>
+                <NavLink marginLeft="2" href="#" onClick={onModalOpen}>
                   <SearchIcon />
                 </NavLink>
               </Menu>

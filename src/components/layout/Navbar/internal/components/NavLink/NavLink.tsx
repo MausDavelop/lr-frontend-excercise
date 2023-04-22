@@ -2,7 +2,7 @@ import { Box, useColorModeValue } from '@chakra-ui/react';
 import { NavLinkProps } from './NavLink.props';
 import Link from '@Src/components/ui/Link/Link';
 
-const NavLink = ({ href, onClick, children }: NavLinkProps) => {
+const NavLink = ({ href, onClick, children, ...props }: NavLinkProps) => {
   return (
     <Box
       px={2}
@@ -13,7 +13,8 @@ const NavLink = ({ href, onClick, children }: NavLinkProps) => {
         textDecoration: 'none',
         bg: useColorModeValue('gray.200', 'gray.700')
       }}
-      cursor="pointer">
+      cursor="pointer"
+      {...props}>
       <Link onClick={onClick} href={href}>
         {children}
       </Link>
